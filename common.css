@@ -1,0 +1,268 @@
+/* THIS FILE CONTAINS ALL THE DEFAULTS FOR AN ALLTIME WEBPAGE */
+
+/* MINIFIED VERSIONS OF THIS FILE AND ALSO search.css ARE STORED AT GitHub TO IMPROVE PAGELOAD TIMES FOR THE HOME
+   AND Flip! PAGES. BUT - BECAUSE ONLY HOME / Flip! PAGES ACCESS THE FILES AT GitHub - THEY COULD THEORETICALLY BE
+   REDUCED IN SIZE BY REMOVING ALL THE STYLINGS THAT AREN'T RELEVENT TO THOSE SPECIFIC PAGES. ALTHOUGH REMOVING
+   IRRELEVENT STYLINGS MAY IMPROVE PAGELOAD TIMES SLIGHTLY, THE GAINS WOULD IN FACT BE MINISCULE, AND THE SITE WOULD
+   THEN END UP WITH TWO VERSIONS OF common.css AND search.css - ONE FOR HOME / Flip! PAGES, AND ANOTHER FOR THE REST
+   OF THE SITE. NOT ONLY WOULD THAT BE UNDESIRABLE FROM A CODE MAINTENANCE PERSPECTIVE, IT WOULD ALSO BE INEFFICIENT,
+   AS A VISITOR WOULD END UP ACCESSING / CACHING TWO VERSIONS OF ESSENTIALLY THE SAME CODE. SO, WHILST SOME STYLINGS
+   STORED AT GitHub ARE REDUNDANT FOR HOME / Flip! PAGES, ON BALANCE IT'S FAR BETTER TO LEAVE IT THAT WAY */
+
+/* SETTING height:100% IN BOTH <html> AND <body> TAGS FIXES TWO PROBLEMS */
+/* [1] STOPS CKEDITOR FROM JUMPING TO THE TOP OF THE PAGE EVERY TIME I PRESS <Enter> */
+/* [2] IN DEVELOPER TOOLS, HIGHLIGHTING HIGH-LEVEL <div>s CORRECTLY COVERS THE WHOLE PAGE INSTEAD OF JUST THE TOP FEW LINES */
+/* RE: [2] ABOVE, REFER ALSO TO COMMENTS BELOW ABOUT WRAPPER */
+html {height:100%;}
+body {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:100%;
+	color: black;
+	background-color:#F5ED36;
+	height:100%;
+	overflow-x:hidden;}
+a:visited{color:blue}
+a:link{
+	color:blue;
+	text-decoration:none;}
+a:hover{color:red}
+/* THIS IS NEEDED TO FIX IE ONLY, WHICH OTHERWISE SHOWS FIELDSET BORDERS AS WHITE */
+fieldset {
+	border-color:blue;
+	border-width:1px;}
+/* A FIREFOX BUG RESULTS IN THE FIELDSET BORDER NOT BEING DISPLAYED. THIS HACK INCREASES 
+   THE BORDER WIDTH TO 2px FOR FIREFOX ONLY, THAT WAY IT DISPLAYS AS AN IFFY-LOOKING 1px
+   BORDER, WHICH IS MUCH BETTER THAN NO BORDER AT ALL. */	
+@-moz-document url-prefix() {
+	fieldset {border-width:2px;}}
+/* HIGHLIGHT LEGEND FOR ENTRY BOXES */
+.outliner{
+	color:blue;
+	font-size:120%;}
+/* SUPPRESS THICK BLUE BORDER ON LINK IMAGES IN IE */
+.IE_noborder {
+	border-style:none;}
+/* DUMMY ENTRY TO NEUTRALISE ANY HTML ERRORS FOR REVIEWS COPIED FROM RYM, THAT HAVE class="rymfmt" EMBEDDED */
+/* ALSO SCAN 01-reviews FOLDER FOR rymfmt FROM TIME-TO-TIME, TO REMOVE ANY SUCH ENTRIES */
+.rymfmt {}
+
+/* HAD A LOT OF PROBLEMS WITH @media GETTING THE SITE TO DISPLAY CORRECTLY AT DIFFERENT RESOLUTIONS */
+/* AFTER 10 DAYS OF STUFFING ABOUT, FINALLY WORKED OUT THAT THE ONLINE EMULATOR CyberCrab WAS THE */
+/* CAUSE OF THE PROBLEMS ... IN THAT INSTEAD OF REPORTING THE CSS #wrapper RULE BEING APPLIED TO THE */
+/* DEVICE BEING SIMULATED, IT INSTEAD REPORTED THE RULE CORRESPONDING TO THE RESOLUTION I WAS VIEWING */
+/* THE SIMULATION IN! FOR EXAMPLE, IF I VIEWED THE EMULATOR AT 1152, AND SIMULATE 1366, THE SIMULATOR */
+/* SAID THAT THE RULE BEING APPLIED TO #wrapper FOR 1366 WAS THE 1152 RULE. IT TOOK OVER A WEEK TO */
+/* REALISE THIS WAS WHAT WAS GOING ON, THE RESULT BEING THAT MY @media RULES APPEARED NOT TO BE WORKING.*/
+/* THEN WHEN I VIEWED THE *LIVE* SITE IN 1024 / 1152 / 1280 I FOUND THAT THE RULES I ESPECIALLY SET UP */
+/* TO TEST WHAT ON EARTH WAS HAPPENING, WERE IN FACT WORKING CORRECTLY. LESSON: CyberCrab IS ALL RIGHT */
+/* FOR VIEWING THE SITE AT DIFFERENT RESOLUTIONS BUT DON'T USE IT TO DETERMINE WHICH CSS RULES ARE BEING */
+/* APPLIED, BECAUSE IT DOESN'T TELL YOU THAT CORRECTLY. UPDATE: COULD ALSO BE CAUSED BY HAVING MY DISPLAY */
+/* SETTINGS IN PC CONTROL PANEL DEFAULTING TO 125% OR 150%, WHICH AFFECTS VIEWPORT SIZE. ALL TESTING */
+/* SHOULD BE DONE AT DISPLAY SETTING OF 100% (AND MAKE SURE BROWSER ZOOM IS AT 100% TOO) */
+
+/* #wrapper IS DEFINED ON ALL PAGES, SO THAT THE @media SETTING BELOW CONSTRAINS THE SITE WIDTH ON WIDESCREEN */
+/* MONITORS (THAT'S ALL RESOLUTIONS 1280 AND ABOVE), TO PRESERVE THE LAYOUT AS IT WAS ORIGINALLY DESIGNED. 
+/* #wrapper IS SET TO 1240 BECAUSE ABOVE THAT HORIZONTAL SCROLLBARS APPEAR, BECAUSE THE VERTICAL SCROLLBAR */
+/* TAKES UP SCREEN SPACE TOO. */
+
+/* THE ISSUE BELOW IS DISCUSSED AT http://stackoverflow.com/questions/5369954/why-is-my-divs-height-zero */
+/* SPECIAL NOTE: profile.php THERE'S A WEIRD PROBLEM WITH #wrapper ON profile.php IN THAT IT SIMPLY REFUSES */
+/* TO WRAP THE PAGE - IT HAS A DEPTH OF ZERO INSTEAD - EVEN ELIMINATING *ALL* CODE FROM THE PAGE WON'T FIX IT! */
+/* THE SAME PROBLEM OCCURS ON ALL ALBUM AND ARTIST PAGES AS WELL.
+/* THE FIX IS TO ADD overflow:hidden TO wrapper (AND envelope TOO) IN THIS FILE. NOT APPLIED THOUGH BECAUSE */
+/* IT ONLY AFFECTS DEVELOPER TOOLS FOR INSPECTING PAGE LAYOUTS, NOT ACTUAL PAGE LAYOUTS THEMSELVES */
+
+/* INCREASE SIZE OF BUTTONS ON TITLEBAR FOR SMARTPHONES */
+@media only screen and (max-width:1023px) {
+#home_button {
+	border:none;
+	position:absolute;
+	top:5px;
+	left:10px;
+	height:42px;}
+#list_button {
+	border:none;
+	position:absolute;
+	top:5px;
+	left:60px;
+	height:42px;}
+#rcr_button {
+	border:none;
+	position:absolute;
+	top:5px;
+	height:42px;
+	left:110px;}}
+@media only screen and (min-width:1024px) {
+#home_button {
+	border:none;
+	position:absolute;
+	top:5px;
+	left:10px;}
+#list_button {
+	border:none;
+	position:absolute;
+	top:5px;
+	left:45px;}
+#rcr_button {
+	border:none;
+	position:absolute;
+	top:5px;
+	left:80px;}}
+
+@media only screen and (min-width:1241px) {
+#wrapper {
+	margin-left:auto;
+	margin-right:auto;
+	width:1240px;}}
+
+@media only screen and (min-width:1024px) and (max-width:1240px) {
+#wrapper {
+	margin-left:auto;
+	margin-right:auto;
+	max-width:1240px;}}
+
+/* NEW LOGIN-OUT & PROFILE BUTTONS */
+#InOutNew {
+	background: rgba(112,173,46,1);
+	background: linear-gradient(to bottom, rgba(112,173,46,1) 0%, rgba(93,151,43,1) 50%, rgba(53,122,0,1) 51%, rgba(84,178,21,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70ad2e', endColorstr='#54b215', GradientType=0 );
+    color: white;
+	border:none;
+	padding: 5px 22px 5px 22px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius:5px 5px 5px 5px;
+	float: left;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}
+#InOutNew:hover {
+	background: rgba(140,199,82,1);
+	background: linear-gradient(to bottom, rgba(140,199,82,1) 0%, rgba(119,187,62,1) 50%, rgba(66,158,0,1) 51%, rgba(110,218,43,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8cc752', endColorstr='#6eda2b', GradientType=0 );}
+#profileNew {
+	position:fixed;
+	margin-left:2px;
+	border: none;
+	background: rgba(112,173,46,1);
+	background: linear-gradient(to bottom, rgba(112,173,46,1) 0%, rgba(93,151,43,1) 50%, rgba(53,122,0,1) 51%, rgba(84,178,21,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70ad2e', endColorstr='#54b215', GradientType=0 );
+	color: white;
+	padding: 5px 23px 5px 12px;
+	text-align:center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius:5px 5px 5px 5px;
+	float: left;
+	width:30px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}
+#profileNew:hover {
+	background: rgba(140,199,82,1);
+	background: linear-gradient(to bottom, rgba(140,199,82,1) 0%, rgba(119,187,62,1) 50%, rgba(66,158,0,1) 51%, rgba(110,218,43,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8cc752', endColorstr='#6eda2b', GradientType=0 );}
+
+/* SITE REGISTRATION and LOGIN/OUT FUNCTIONS DISABLED ON DEVICES LESS THAN 985px */
+@media only screen and (max-width:984px) {
+#InOutNew {display:none;}
+#profileNew {display:none;}}
+#LogInOut {
+	position:fixed;
+	top:90%;
+	right:10%;
+	z-index:5;}
+
+/* [Return] OR [Close] BUTTONS ON HELP PAGES */
+@media only screen and (min-width:800px) {
+#button-right {
+	position:relative;
+	top:3px;
+	left:51%;}}
+@media only screen and (max-width:799px) {
+#button-right {
+	position:fixed;
+	top:55px;
+	left:77px;}}
+
+/* [Return] OR [Close] BUTTONS ON HELP PAGES */
+.button {float:right;}
+
+/* MISCELLANEOUS ODDS AND ENDS USED AT VARIOUS PLACES ON THE SITE */
+.user_note {
+	font-size:85%;}
+.red {
+	color:red;}
+.blue {
+	color:blue;
+	cursor:pointer;}
+.green {
+	color:green;}
+.narrow {
+	line-height:8px;}
+.apps-heading {
+	display:block;
+	font-size:160%;
+	text-align:center;}
+#rcr_trophy {
+	border:none;
+	position:absolute;
+	top:4px;
+	left:80px;}
+#feature{
+	position:relative;
+	bottom:9px;}
+.comments {
+	font-size:80%;
+	padding:3px;}
+.info_button_comment {
+	border-style:none;
+	position:relative;
+	top:4px;}
+#info_button_weighting {
+	border-style:none;
+	position:relative;
+	top:2px;}
+#info_button_summary {
+	border-style:none;
+	position:relative;
+	bottom:108px;}
+#pearl {
+	border:none;}
+a.button_blue_pearl {
+	border-style:none;
+	position:relative;
+	top:5px;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background-image: url('button_blue_pearl.jpg');
+	margin-left:auto;
+	margin-right:auto;}
+a.button_blue_pearl:hover {
+	background-position: center bottom;}
+
+/* HEADER & FOOTER */
+#header {
+	position:relative;}
+#header-left {
+	float:left;}
+#header-middle {
+	position:absolute;
+	left:40.7%;
+	border:1px solid #C9CA2A;
+	padding:8px;}
+/* relative NEEDED TO SET ADDTHIS BUTTONS AS ABSOLUTE RELATIVE TO header-right */
+#header-right {
+	position:relative;
+	float:right;}
+#header-right-reviewer-chart{
+	position:relative;
+	right:10px;
+	top:8px;
+	float:right;}
+#footer {
+	clear:both;
+	text-align:center;
+	font-size:80%;}
